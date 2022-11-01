@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="header">
+      <div class="list-row">
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search text here..." [(ngModel)]="filter" />
+          </div>
+      </div>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Vendor Name</th>
+          <th>Vendor Type</th>
+          <th>Asset Type</th>
+          <th>Valid From</th>
+          <th>Valid To</th>
+          <th>Address</th>
+          
+          <!--Edit / Delete-->
+          <th>Action for E-D</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of this.vendorsService.vendors | filter: filter | paginate: {itemsPerPage: 3 , currentPage: page}">
+          <td (click)="populateForm(vendor)">{{ vendor.vendorId }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.vendorName }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.vendorType.vendorTypeName }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.assetType.assetTypeName }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.validFrom }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.validTo }}</td>
+          <td (click)="populateForm(vendor)">{{ vendor.vendorAddress }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="updateVendor(vendor.vendorId)">
+              E</button
+            >&nbsp;
+            <button
+              class="btn btn-sm btn-outline-danger"
+              (click)="deleteVendor(vendor.vendorId)"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="footer">
+      <!--Pagination-->
+      <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+    </div>
+  </div>
+  
+  

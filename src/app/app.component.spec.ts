@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'assetmanagementsystem'`, () => {
+  it(`should have as title 'Asset-Management-System-Angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('assetmanagementsystem');
+    expect(app.title).toEqual('Asset-Management-System-Angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('assetmanagementsystem app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Asset-Management-System-Angular app is running!');
   });
 });

@@ -1,0 +1,83 @@
+<!-- Reactive Form --Model-Driven Approach -->
+<div class="container">
+    <div>
+        <h3>
+            Sign In
+        </h3>
+        <hr>    
+        <!-- Reactive Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+            <!-- Username -->
+            <div>
+                <input type="text"
+                placeholder="Enter Username"
+                formControlName="username"
+                autocomplete="off"
+                class="form-control"
+                required>
+            </div>
+            <!-- Username Validation Message -->
+            <div *ngIf="isSubmitted && formControls.username.errors">
+                <div *ngIf="formControls.username.errors.required"
+                class="loginError">
+                    Username is required
+                </div>
+            </div>
+  
+            <!-- Password -->
+            <div>
+                &nbsp;
+                <input type="password"
+                placeholder="Enter Password"
+                formControlName="password"
+                autocomplete="off"
+                class="form-control"
+                required>
+            </div>
+            <!-- Password Validation Message -->
+            <div *ngIf="isSubmitted && formControls.password.errors">
+                <div *ngIf="formControls.password.errors.required"
+                class="loginError">
+                    Password is required
+                </div>
+            </div>
+
+            <!-- User Type -->
+            <div class="col-12">
+            <label for="userTypeID" class="form-label">
+                User Type
+            </label>
+            <select name="userTypeID" id="userTypeID" class="form-control">
+                <option value=0 selected disabled>
+                    Choose User Type
+                </option>
+                <option *ngFor="let loan of loanService.loans" value={{loan.userTypeID}}>
+                    {{loan.loanType}}
+                </option>
+            </select>
+            <!-- User Type Validation -->
+            <div class="validation-error" *ngIf="userTypeID.touched && userTypeID.invalid">
+                <div *ngIf="userTypeID.errors.required">
+                User Type should not be empty
+                </div>
+            </div>
+            </div>
+            <br>
+
+            
+            <!-- Submit -->
+            <div>
+                <button type="submit" class="btn btn-md btn-outline-primary">
+                    <i class="fa fa-sign-in">
+                    </i>
+                    Login
+                </button>
+            </div>
+  
+            <!-- Displyaing Error -->
+            <div *ngIf="error" class="loginError">
+                {{error}}
+            </div>
+        </form>
+    </div>
+  </div>
